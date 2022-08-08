@@ -9,7 +9,7 @@ function App() {
     
     event.preventDefault()
 
-    fetch("http://localhost:4000/tuvcertificates/system/" + certID)
+    fetch("http://localhost:4000/tuvcertificates/system/" + encodeURIComponent(certID))
     .then( response => {
       return response.json()
     })

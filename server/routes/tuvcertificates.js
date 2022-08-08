@@ -8,7 +8,7 @@ const router = express.Router()
 
 router.get('/product/:id', (req, res) => {
 
-    const url = 'https://www.certipedia.com/quality_marks/' + req.params.id //get correct url for certipedia
+    const url = 'https://www.certipedia.com/quality_marks/' + encodeURIComponent(req.params.id)
 
     got(url).then(response => {
 
@@ -28,8 +28,10 @@ router.get('/product/:id', (req, res) => {
 });
 
 router.get('/system/:id', (req, res) => {
+    
+    const url = 'https://www.certipedia.com/certificates/' + encodeURIComponent(req.params.id)
 
-    const url = 'https://www.certipedia.com/certificates/' + req.params.id.replace(/ /g, '+')
+    console.log(encodeURIComponent(req.params.id))
 
     got(url).then(response => {
 
@@ -42,7 +44,7 @@ router.get('/system/:id', (req, res) => {
 
     }).catch(err => {
         console.log(err)
-        res.status(500).json({ "values" : ["", "", "", ""] })
+        res.status(500).json({ "values" : ["-", "-", "-", "-"] })
     });
 
 });
