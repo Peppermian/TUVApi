@@ -3,7 +3,6 @@ const { JSDOM } = require("jsdom")
 const TUVtools = require("../src/tuvtools.js")
 
 const express = require('express')
-const { application } = require('express')
 const router = express.Router()
 
 router.get('/product/:id', (req, res) => {
