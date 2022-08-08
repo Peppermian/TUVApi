@@ -30,8 +30,6 @@ router.get('/system/:id', (req, res) => {
     
     const url = 'https://www.certipedia.com/certificates/' + encodeURIComponent(req.params.id)
 
-    console.log(encodeURIComponent(req.params.id))
-
     got(url).then(response => {
 
         console.log(response.statusCode)
