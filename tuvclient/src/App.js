@@ -9,7 +9,11 @@ function App() {
     
     event.preventDefault()
 
+<<<<<<< Updated upstream
     fetch("/tuvcert/" + certID)
+=======
+    fetch("http://localhost:4000/tuvcertificates/system/" + certID)
+>>>>>>> Stashed changes
     .then( response => {
       return response.json()
     })
@@ -22,7 +26,7 @@ function App() {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <label> Enter ISO 27001 certificate ID: 
+        <label> Search System Certificate ID:
           <input 
             type="text"
             value={certID}
@@ -33,8 +37,13 @@ function App() {
       </form>
 
       <div>
+<<<<<<< Updated upstream
         {Array.from(contact).map( elem => {
             return <p> {elem} </p>
+=======
+        {Array.from(contact).map( (elem, index) => {
+            return <p key={index}> {elem} </p>
+>>>>>>> Stashed changes
           })}
       </div>
 

@@ -1,12 +1,15 @@
 const process = require('process')
 const got = require('got')
 const { JSDOM } = require("jsdom")
-const TUVtools = require("./tuvtools.js")
+const TUVtools = require("./src/tuvtools.js")
 
 const express = require('express')
-const app = express(); 
-app.set('view engine', 'ejs')
+const router = require('./routes/tuvcertificates.js')
+tuvcertRouter = require('./routes/tuvcertificates.js')
 
+const app = express(); 
+
+<<<<<<< Updated upstream
 process.on('SIGINT', () => {
     console.log("Recieved signal 'SIGINT'. Exiting...\n")
     process.exit();
@@ -36,6 +39,15 @@ app.get('/tuvcert/:id', (req, res) => {
     });
 
 });
+=======
+//set headers before mounting routers
+app.use( (req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    next();
+})
+
+app.use('/tuvcertificates', tuvcertRouter)
+>>>>>>> Stashed changes
 
 const port = process.env.PORT || 8080
 app.listen(port, () => console.log(`\nApp listening on http://localhost:${port}/`))

@@ -19,4 +19,24 @@ function parseCompanyName(dom){
     return owner[1].querySelector("p").textContent
 }
 
-module.exports = { parseContact, parseCompanyName }
+function parseCertHolderAddr(dom){
+
+    const CertHolderAddrElem = dom.window.document.getElementsByClassName("certificate-holder-address");
+    if(!CertHolderAddrElem) return ["-", "-", "-"]
+
+    var arr = CertHolderAddrElem[0].innerHTML.split('<br>').map(str => str.trim())
+    arr[0] = arr[0].replace(/<\/?strong>/g, "")
+    arr[1] = arr[1].replace(/<\/?strong>/g, "")
+
+
+    console.log(arr)
+
+    return { "values" : arr}
+
+}
+
+module.exports = { 
+    parseContact,
+    parseCompanyName,
+    parseCertHolderAddr
+}
