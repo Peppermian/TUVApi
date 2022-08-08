@@ -4,7 +4,6 @@ const { JSDOM } = require("jsdom")
 const TUVtools = require("./src/tuvtools.js")
 
 const express = require('express')
-const router = require('./routes/tuvcertificates.js')
 tuvcertRouter = require('./routes/tuvcertificates.js')
 
 const app = express(); 
