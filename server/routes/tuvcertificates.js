@@ -8,10 +8,10 @@ const router = express.Router()
 //base endpoint for redirecting based on ID type
 router.get('/:id', (req, res) => {
 
-    if( TUVtools.certIdToType(req.params.id) == "system"){
+    if(TUVtools.certIdToType(req.params.id) == "system"){
         res.redirect('/tuvcertificates/system/' + encodeURIComponent(req.params.id))
     }
-    else if (TUVtools.certIdToType(req.params.id) == "product") {
+    else if(TUVtools.certIdToType(req.params.id) == "product") {
         res.redirect('/tuvcertificates/product/' + encodeURIComponent(req.params.id))
     }
     else{
