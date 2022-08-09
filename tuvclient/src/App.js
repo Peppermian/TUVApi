@@ -9,7 +9,7 @@ function App() {
     
     event.preventDefault()
 
-    fetch("http://localhost:4000/tuvcertificates/system/" + encodeURIComponent(certID))
+    fetch("http://localhost:4000/tuvcertificates/" + encodeURIComponent(certID))
     .then( response => {
       return response.json()
     })
@@ -31,7 +31,6 @@ function App() {
         </label>
         <input type="submit" />
       </form>
-
       <div>
         {Array.from(contact).map( (elem, index) => {
             return <p key={index}> {elem} </p>

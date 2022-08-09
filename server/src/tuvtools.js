@@ -1,7 +1,7 @@
 function parseContact(dom){
 
     const addressElement = dom.window.document.querySelector("address")
-    if(!addressElement) return ["-", "-", "-"]
+    if(!addressElement) return ["", "", ""]
 
     const arr = addressElement.innerHTML.split('<br>').slice(2).map(str => str.trim()) //clean up html code
     
@@ -14,7 +14,7 @@ function parseContact(dom){
 
 function parseCompanyName(dom){
     const owner = dom.window.document.getElementsByClassName("tuv-list__item")
-    if(!owner) return "-"
+    if(!owner) return ""
     
     return owner[1].querySelector("p").textContent
 }
@@ -22,7 +22,7 @@ function parseCompanyName(dom){
 function parseCertHolderAddr(dom){
 
     const CertHolderAddrElem = dom.window.document.getElementsByClassName("certificate-holder-address");
-    if(!CertHolderAddrElem) return ["-", "-", "-"]
+    if(!CertHolderAddrElem) return ["", "", ""]
 
     var arr = CertHolderAddrElem[0].innerHTML.split('<br>').map(str => str.trim())
     arr[0] = arr[0].replace(/<\/?strong>/g, "")
@@ -35,8 +35,17 @@ function parseCertHolderAddr(dom){
 
 }
 
+
+//return: 0 = Product Certificate ID, 1 = System Certificate ID
+function certIdToType(id){
+
+    return /^[0-9]*$/.test(id) ? "product" : "system"
+    
+}
+
 module.exports = { 
     parseContact,
     parseCompanyName,
-    parseCertHolderAddr
+    parseCertHolderAddr,
+    certIdToType
 }

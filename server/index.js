@@ -1,8 +1,3 @@
-const process = require('process')
-const got = require('got')
-const { JSDOM } = require("jsdom")
-const TUVtools = require("./src/tuvtools.js")
-
 const express = require('express')
 tuvcertRouter = require('./routes/tuvcertificates.js')
 

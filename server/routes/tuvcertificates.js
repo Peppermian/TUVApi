@@ -5,6 +5,17 @@ const TUVtools = require("../src/tuvtools.js")
 const express = require('express')
 const router = express.Router()
 
+router.get('/:id', (req, res) => {
+
+    if( TUVtools.certIdToType(req.params.id) == "system"){
+        res.redirect('/tuvcertificates/system/' + req.params.id)
+    }
+    else if (TUVtools.certIdToType(req.params.id) == "product") {
+        res.redirect('/tuvcertificates/product/' + req.params.id)
+    }
+
+});
+
 router.get('/product/:id', (req, res) => {
 
     const url = 'https://www.certipedia.com/quality_marks/' + encodeURIComponent(req.params.id)
