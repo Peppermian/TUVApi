@@ -15,7 +15,7 @@ router.get('/:id', (req, res) => {
         res.redirect('/tuvcertificates/product/' + encodeURIComponent(req.params.id))
     }
     else{
-        res.status(404).json({"values": []})
+        res.status(404).json({"values": null, "scope" : null})
     }
 
 });
@@ -30,14 +30,14 @@ router.get('/product/:id', (req, res) => {
         console.log(response.statusCode)
 
         const dom = new JSDOM(response.body)
-        const contact = TUVtools.parseContact(dom)
-        const name = TUVtools.parseCompanyName(dom)
+        const contact = TUVtools.parseProdCertContact(dom)
+        const name = TUVtools.parseProdCertName(dom)
 
-        res.json({ "values" : [name, contact[0], contact[1], contact[2]] })
+        res.json({ "values" : [name, contact[0], contact[1], contact[2]]})
 
     }).catch(err => {
         console.log(err)
-        res.status(404).json({ "values" : [] })
+        res.status(404).json({ "values" : null, "scope" : null })
     });
 
 });
@@ -52,13 +52,13 @@ router.get('/system/:id', (req, res) => {
         console.log(response.statusCode)
 
         const dom = new JSDOM(response.body)
-        const contact = TUVtools.parseCertHolderAddr(dom)
+        const info = TUVtools.parseSystemCertInfo(dom)
 
-        res.json(contact)
+        res.json(info)
 
     }).catch(err => {
         console.log(err)
-        res.status(404).json({ "values" : [] })
+        res.status(404).json({ "values" : null, "scope" : null})
     });
 
 });
