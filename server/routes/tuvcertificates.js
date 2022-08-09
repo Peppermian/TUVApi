@@ -9,10 +9,10 @@ const router = express.Router()
 router.get('/:id', (req, res) => {
 
     if( TUVtools.certIdToType(req.params.id) == "system"){
-        res.redirect('/tuvcertificates/system/' + req.params.id)
+        res.redirect('/tuvcertificates/system/' + encodeURIComponent(req.params.id))
     }
     else if (TUVtools.certIdToType(req.params.id) == "product") {
-        res.redirect('/tuvcertificates/product/' + req.params.id)
+        res.redirect('/tuvcertificates/product/' + encodeURIComponent(req.params.id))
     }
     else{
         res.status(404).json({"values": []})
