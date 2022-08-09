@@ -1,12 +1,12 @@
 version: '3.8'
 services:
   api:
-    image: api:latest
+    image: luisgriepenstroh/tuv_cert_verification:api
     container_name: api_backend
     ports:
       - '4000:4000'
   client:
-    image: client:latest
+    image: luisgriepenstroh/tuv_cert_verification:client
     container_name: client_frontend
     ports:
       - '3000:3000'
