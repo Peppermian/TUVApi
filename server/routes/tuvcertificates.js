@@ -5,6 +5,7 @@ const TUVtools = require("../src/tuvtools.js")
 const express = require('express')
 const router = express.Router()
 
+//base endpoint for redirecting based on ID type
 router.get('/:id', (req, res) => {
 
     if( TUVtools.certIdToType(req.params.id) == "system"){
@@ -13,9 +14,13 @@ router.get('/:id', (req, res) => {
     else if (TUVtools.certIdToType(req.params.id) == "product") {
         res.redirect('/tuvcertificates/product/' + req.params.id)
     }
+    else{
+        res.status(404).json({"values": []})
+    }
 
 });
 
+//product ID endpoint
 router.get('/product/:id', (req, res) => {
 
     const url = 'https://www.certipedia.com/quality_marks/' + encodeURIComponent(req.params.id)
@@ -32,11 +37,12 @@ router.get('/product/:id', (req, res) => {
 
     }).catch(err => {
         console.log(err)
-        res.status(500).json({ "values" : ["", "", "", ""] })
+        res.status(404).json({ "values" : [] })
     });
 
 });
 
+//system ID endpoint
 router.get('/system/:id', (req, res) => {
     
     const url = 'https://www.certipedia.com/certificates/' + encodeURIComponent(req.params.id)
@@ -52,7 +58,7 @@ router.get('/system/:id', (req, res) => {
 
     }).catch(err => {
         console.log(err)
-        res.status(500).json({ "values" : ["-", "-", "-", "-"] })
+        res.status(404).json({ "values" : [] })
     });
 
 });

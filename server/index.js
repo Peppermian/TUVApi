@@ -9,7 +9,9 @@ app.use( (req, res, next) => {
     next();
 })
 
+//mount router
 app.use('/tuvcertificates', tuvcertRouter)
 
+//start listening on given port
 const port = 4000
 app.listen(port, () => console.log(`\nApp listening on http://localhost:${port}/`))

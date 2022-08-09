@@ -1,3 +1,4 @@
+//will parse adress field for product certificates
 function parseContact(dom){
 
     const addressElement = dom.window.document.querySelector("address")
@@ -12,6 +13,7 @@ function parseContact(dom){
     return arr;
 }
 
+//will parse company name field for product certificates
 function parseCompanyName(dom){
     const owner = dom.window.document.getElementsByClassName("tuv-list__item")
     if(!owner) return ""
@@ -19,6 +21,7 @@ function parseCompanyName(dom){
     return owner[1].querySelector("p").textContent
 }
 
+//will parse all contact info for system certificates
 function parseCertHolderAddr(dom){
 
     const CertHolderAddrElem = dom.window.document.getElementsByClassName("certificate-holder-address");
@@ -35,12 +38,11 @@ function parseCertHolderAddr(dom){
 
 }
 
-
-//return: 0 = Product Certificate ID, 1 = System Certificate ID
+//will return corresponding certificate type for id 
 function certIdToType(id){
 
     return /^[0-9]*$/.test(id) ? "product" : "system"
-    
+
 }
 
 module.exports = { 

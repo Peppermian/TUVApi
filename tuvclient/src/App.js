@@ -2,9 +2,13 @@ import { useState } from 'react'
 
 function App() {
   
+  //string state for ID input field
   const [certID, setCertID] = useState('')
+
+  //string array state for fetched contact info
   const [contact, setContact] = useState([])
 
+  //event handler for submitting id field
   const handleSubmit = (event) => {
     
     event.preventDefault()
@@ -19,6 +23,7 @@ function App() {
 
   }
 
+  //application body 
   return (
     <div>
       <form onSubmit={handleSubmit}>
